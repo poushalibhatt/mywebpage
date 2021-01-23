@@ -1,13 +1,16 @@
 import React from 'react';
 import sakuraflower from '../sakuraflower.jpg';
-import NavBar from './NavBar';
 import Render from './Render';
-
-let Home=()=>{
+import Painting from './Painting';
+let Home=(props)=>{
     return(
         <div className="main">
            <h1>Home Page</h1> 
-           <Render/>
+           <Render render=
+                {
+                  (file, error, handleFile)=> <Painting {...props} file={file} error={error} handleFile={handleFile}/> 
+                }
+            />
         </div>
     )
 }
