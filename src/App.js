@@ -1,5 +1,10 @@
 import React,{useState} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {
+  BrowserRouter, 
+  Switch, 
+  Route,
+  Redirect
+} from 'react-router-dom';
 import './App.css';
 import Home from './Component/Home';
 import Painting from './Component/Painting';
@@ -12,48 +17,15 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
+
         <NavBar/>
       <Switch>
-        <Route path='/' exact component={Home}/>
-        <Route path='/home' exact component={Home}/>
-        <Route 
-          path="/painting" 
-          render=
-            {props => 
-              <Render render=
-                {
-                  (file, error, handleFile)=> <Painting {...props} file={file} error={error} handleFile={handleFile}/> 
-                }
-              />
-            }
-          />
-          <Route/>
-          <Route 
-          path="/quiling" 
-          render=
-            {props => 
-              <Render render=
-                {
-                  (file, error, handleFile)=> <Quiling {...props} file={file} error={error} handleFile={handleFile}/> 
-                }
-              />
-            }
-          />
-          <Route/>
-          {/* <Route 
-          path="/quiling" 
-          render=
-            {props => 
-              <Render render=
-                {
-                  (file, error, handleFile)=> <Quiling {...props} file={file} error={error} handleFile={handleFile}/> 
-                }
-              />
-            }
-          />
-          <Route/> */}
-          {/* <Route path='/quiling' component={Quiling} /> */}
+        <Route path='/home'  component={Home}/>
+        <Route path='/painting'  component={Painting}/>
+        <Route path='/quiling' render={props =>  <Quiling {...props}/>}/>
         <Route path='/shop' component={Shop}/>
+        <Redirect strict from="/" to="/home" />
+        <Redirect to="/" />
       </Switch>
       </BrowserRouter>
     </div>

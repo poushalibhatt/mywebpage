@@ -1,17 +1,20 @@
 import React from 'react';
+import Render from './Render';
+import FileUpload from './FileUpload';
 
-let Quiling=({file, error, handleFile})=>{
+let Quiling=(props)=>{
     
     return(
-            
-            <form >
-                <input type="file" onChange={handleFile}/>
-                <div>
-                    {error ? <div className='error'>Select image type(png/jpeg)</div>: null}
-                    {file ? <div>{file.name}</div> :null}
-                </div>
-                <h1>Quiling Page</h1>
-            </form>
+        <div>
+            <h1>Quiling Page</h1>
+            <div>
+                <Render render=
+                    {
+                        (file, error, handleFile)=> <FileUpload {...props} file={file} error={error} handleFile={handleFile}/> 
+                    }
+                />
+            </div>
+        </div>
         
     )
 }
